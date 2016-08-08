@@ -1,0 +1,32 @@
+{
+    "name": "lpdeveloper/nfephp7",
+    "description": "Wrapper de comunicação com SEFAZ",
+    "type": "application",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Luis Paulo",
+            "email": "lpdeveloper@hotmail.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mikey179/vfsStream": "~1"
+    },
+    "require": {
+        "php": ">=5.5",
+        "monolog/monolog": "1.17.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NFe\\": ["src", "src/Exception"],
+            "NFe\\Filters\\": ["src/Filters", "src/Filters/Validates"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NFe\\Tests\\": "test/src"
+        }
+    }
+}

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe Id="NFe31130710884059000143550010000000031852784890" versao="3.10">
+        <ide>
+            <cUF>31</cUF>
+            <cNF>85278489</cNF>
+            <natOp>VENDA</natOp>
+            <indPag>0</indPag>
+            <mod>55</mod>
+            <serie>1</serie>
+            <nNF>3</nNF>
+            <dhEmi>2014-07-29T18:31:10-03:00</dhEmi>
+            <dhSaiEnt>2014-07-29T18:31:10-03:00</dhSaiEnt>
+            <tpNF>1</tpNF>
+            <idDest>3</idDest>
+            <cMunFG>3138708</cMunFG>
+            <tpImp>1</tpImp>
+            <tpEmis>1</tpEmis>
+            <cDV>0</cDV>
+            <tpAmb>1</tpAmb>
+            <finNFe>1</finNFe>
+            <indFinal>1</indFinal>
+            <indPres>2</indPres>
+            <procEmi>1</procEmi>
+            <verProc>2.2.8</verProc>
+        </ide>
+        <emit>
+            <CNPJ>10884059000143</CNPJ>
+            <xNome>ASSOCIAÇÃO DOS AGRICULTORES FAMILIARES DE LUMINÁRIAS</xNome>
+            <xFant>AAFL</xFant>
+            <enderEmit>
+                <xLgr>RUA HAIFA</xLgr>
+                <nro>278</nro>
+                <xBairro>ESPIGAO</xBairro>
+                <cMun>3138708</cMun>
+                <xMun>Luminarias</xMun>
+                <UF>MG</UF>
+                <CEP>37240000</CEP>
+                <cPais>1058</cPais>
+                <xPais>BRASIL</xPais>
+            </enderEmit>
+            <IE>0015356240007</IE>
+            <IM>ISENTO</IM>
+            <CNAE>9499500</CNAE>
+            <CRT>3</CRT>
+        </emit>
+        <dest>
+            <CNPJ>26461699000180</CNPJ>
+            <xNome>COMPANHIA NACIONAL DE ABASTECIMENTO - CONAB</xNome>
+            <enderDest>
+                <xLgr>R. PROF. ANTONIO ALEIXO</xLgr>
+                <nro>756</nro>
+                <xCpl>SALA 105</xCpl>
+                <xBairro>LOURDES</xBairro>
+                <cMun>3106200</cMun>
+                <xMun>BELO HORIZONTE</xMun>
+                <UF>MG</UF>
+                <CEP>30180150</CEP>
+                <cPais>1058</cPais>
+                <xPais>BRASIL</xPais>
+            </enderDest>
+            <indIEDest>9</indIEDest>
+        </dest>
+        <det nItem="1">
+            <prod>
+                <cProd>0067</cProd>
+                <cEAN/>
+                <xProd>BIOXAN 500ML</xProd>
+                <NCM>30043290</NCM>
+                <CFOP>5102</CFOP>
+                <uCom>L</uCom>
+                <qCom>24.0000</qCom>
+                <vUnCom>9.5000000000</vUnCom>
+                <vProd>228.00</vProd>
+                <cEANTrib/>
+                <uTrib>L</uTrib>
+                <qTrib>24.0000</qTrib>
+                <vUnTrib>9.5000000000</vUnTrib>
+                <indTot>1</indTot>
+            </prod>
+            <imposto>
+                <ICMS>
+                    <ICMS40>
+                        <orig>0</orig>
+                        <CST>40</CST>
+                    </ICMS40>
+                </ICMS>
+                <PIS>
+                    <PISNT>
+                        <CST>06</CST>
+                    </PISNT>
+                </PIS>
+                <COFINS>
+                    <COFINSNT>
+                        <CST>06</CST>
+                    </COFINSNT>
+                </COFINS>
+            </imposto>
+        </det>
+        <total>
+            <ICMSTot>
+                <vBC>0.00</vBC>
+                <vICMS>0.00</vICMS>
+                <vICMSDeson>0.00</vICMSDeson>
+                <vBCST>0.00</vBCST>
+                <vST>0.00</vST>
+                <vProd>6477.50</vProd>
+                <vFrete>0.00</vFrete>
+                <vSeg>0.00</vSeg>
+                <vDesc>0.00</vDesc>
+                <vII>0.00</vII>
+                <vIPI>0.00</vIPI>
+                <vPIS>0.00</vPIS>
+                <vCOFINS>0.00</vCOFINS>
+                <vOutro>0.00</vOutro>
+                <vNF>6477.50</vNF>
+            </ICMSTot>
+        </total>
+        <transp>
+            <modFrete>0</modFrete>
+        </transp>
+        <infAdic>
+            <infAdFisco>PRODUTOS REF. A CPR. MG/2010/02/0649-N - MERCADORIA DESTINADA AO FOME ZERO - ISENÇÃO DE ICMS CONF. ITEM 138, SUBITEM 138.1, ALINEA D, PARTE I DO RICMS/2002. ESCOLA MUNICIPAL FRANCISCO DINIZ, CNPJ.:18.244.301/0001-26, Praça nossa Senhora do Carmo, n° 295, Centro, Luminárias/MG. CEP.:37240000</infAdFisco>
+        </infAdic>
+    </infNFe>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            <Reference URI="#NFe31130710884059000143550010000000031852784890">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                <DigestValue>DVAis51Sk0z6SMybTFspemGaO2A=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>jjeRYsoGsFzEoB1XuXvefPtc3YI4skOzF0SLmPVoSzqOUe2HrECRJodzAHEIUMcioEq+xHq/eQEyIRhOOUAgFJiihnC1zZXh6Bg4ecflCBOPvIuaoi9LcPH9VNqgxy/46zBVInXFuKEyLKQNy2C30gsCuXTQu6/KG0/5VL5NYCxGzR2FpIttZdP+djboNLzCWq6APKq+sD9O3HvXPgskFl9WoKmYCUi1ezuKU3FnckKk5B+H1D0mAet/NFE9/Xd+btTeBVh8DsHJj9+RqtgHWM87rq7pzebURrg/2ntgpJDkKSg+rNv1mRnld/9ErkiTYO+6JYuqn3a1DVBIs9sFtw==</SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509Certificate>MIIDoTCCAomgAwIBAgIJAPU8opp5ys21MA0GCSqGSIb3DQEBCwUAMGcxCzAJBgNV
+                    BAYTAkJSMQswCQYDVQQIDAJNRzEQMA4GA1UECgwHY29tcGFueTEOMAwGA1UEAwwF
+                    TkZlT08xKTAnBgkqhkiG9w0BCQEWGmxwZGV2ZWxvcGVyQGhvdG1haWwuY29tLmJy
+                    MB4XDTE1MDYyOTIwMTQzNFoXDTE3MDYyODIwMTQzNFowZzELMAkGA1UEBhMCQlIx
+                    CzAJBgNVBAgMAk1HMRAwDgYDVQQKDAdjb21wYW55MQ4wDAYDVQQDDAVORmVPTzEp
+                    MCcGCSqGSIb3DQEJARYabHBkZXZlbG9wZXJAaG90bWFpbC5jb20uYnIwggEiMA0G
+                    CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDZ5nhPONiw/qtb43ITi439ZSuDyX6D
+                    Rg/irulOo7OKtsFoTIYwqa+0hs51lVibl3QtKZujJSepSUptmQLc5FuBUhlj6q+q
+                    Xi7sDXdFPPjyrLkka/Ku+BzPWakeYEJco+12+X1WDeLrLK3Hs3QP1KUdD5t+bD0j
+                    NwW668bIXYxA3VgfKati6kXTFgSwB6HzldhgOYF8q4KKEgHlUYmqr3ZmoVEPtQBR
+                    xzFhwDQf69bTZ+542FVROUJvsLNA5LJ8G1tatXNvBzBCfU/HRRhTlAOXClUzztbC
+                    SSBTyMmxgwfwYXq3HA2AB8/rplIOzzBFZMDOtPEaeFMpcONHJuez3+d9AgMBAAGj
+                    UDBOMB0GA1UdDgQWBBQoQ0tmQYleoahHR+f1MTHQNXS0rTAfBgNVHSMEGDAWgBQo
+                    Q0tmQYleoahHR+f1MTHQNXS0rTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUA
+                    A4IBAQCEOOLkxCLI9JNJLi449cq2922D1iI8SLwq2YbRGIToeJ0HNe4JfTYQP3k9
+                    NrFb+DtMxkWXp8aQDFhODoqJNf0hoyF7yUanB2v54sCQGSCbULjQICeWrL8dxrS2
+                    +ApH2+lKNchT5y8q+49dOoOItYu63KQ1AlyfC40G+MuHxpg6zH28pXcWbEaeILiW
+                    295hJmIAxuW/Fbamd4MxR4u+GdHzt7wJPeLobj5UXBs/FcDFmb3u0Xj0qHRRGKoK
+                    /sLoRI2WkgXTTpvUTZv2/xQoJ00e9h9JghPEB1CR7aGZ4JvCo5fWneWZzyyGW8N/
+                    I4Kzajp2AyWjwnA/Ub7egvrRHmMK</X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+</NFe>
