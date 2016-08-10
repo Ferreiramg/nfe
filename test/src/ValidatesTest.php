@@ -21,11 +21,13 @@ class ValidatesTest extends PHPUnit {
 
     public function testValidateSchemasNfe() {
 
-        $schema = new SchemaValidate($this->_simpleMock(\NFe\ProccessInterface::class));
+        $schema = new SchemaValidate(
+                $this->_simpleMock(\NFe\ProccessInterface::class)
+        );
         $template = new ProccessTemplate(
                 $schema->setSchemaPathFile(self::SCHEMA_NFE)
         );
-        
+
         $run = $template->setTemplate($this->_renderTemplate());
         $run->proccess(new Base());
     }
@@ -37,11 +39,13 @@ class ValidatesTest extends PHPUnit {
         $template = $this->_renderTemplate();
         $template->infNFe->ide->cUF->remove(); //remove node cUF
 
-        $schema = new SchemaValidate($this->_simpleMock(\NFe\ProccessInterface::class));
+        $schema = new SchemaValidate(
+                $this->_simpleMock(\NFe\ProccessInterface::class)
+        );
         $proccess = new ProccessTemplate(
                 $schema->setSchemaPathFile(self::SCHEMA_NFE)
         );
-        
+
         $run = $proccess->setTemplate($template);
         $run->proccess(new Base());
     }
