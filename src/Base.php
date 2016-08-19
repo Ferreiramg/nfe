@@ -2,12 +2,16 @@
 
 namespace NFe;
 
+use \League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local;
+
 /**
  * Description of Base
  *
  * @author lpdev
  */
-class Base {
+class Base
+{
 
     /**
      *
@@ -21,7 +25,8 @@ class Base {
      */
     private $certificate;
 
-    public function loadXml($xmlstring) {
+    public function loadXml($xmlstring)
+    {
         if (($this->xml instanceof \DOMDocument) === true) {
             return null;
         }
@@ -32,18 +37,21 @@ class Base {
         $this->xml->loadXML((string) $xmlstring, LIBXML_NOBLANKS | LIBXML_NOEMPTYTAG);
     }
 
-    public function loadCertificate() {
-        if (($this->certificate instanceof Certificates\OpenCertificate) === true) {
+    public function loadCertificate()
+    {
+        if (($this->certificate instanceof Certificates\Certified) === true) {
             return $this;
         }
-        $this->certificate = new Certificates\OpenCertificate(
-                new Certificates\LoadA1(LOCAL_CERT, PASSW_CERT)
+        $local = new Filesystem(new Local(LOCAL_CERT));
+        $this->certificate = new Certificates\Certificate(
+            new Certificates\Reader($local, NAME_CERT, PASSW_CERT)
         );
+
         return $this;
     }
 
-    public function getCertificate() {
+    public function getCertificate()
+    {
         return $this->certificate;
     }
-
 }

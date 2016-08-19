@@ -10,10 +10,13 @@ use NFe\Base;
  *
  * @author Luis Paulo
  */
-class ValidateCertificate extends DecorateProcess {
+class ValidateCertificate extends DecorateProcess
+{
 
-    public function proccess(Base $base) {
-        $this->validDateCerts($base);//validate
+    public function proccess(Base $base)
+    {
+        $base->loadCertificate();
+        $this->validDate($base); //validate
         $this->createprocess->proccess($base);
     }
 
@@ -23,21 +26,12 @@ class ValidateCertificate extends DecorateProcess {
      * @return boolean 
      * @throws CertificateException
      */
-    private function validDateCerts(Base $base) {
-        $base->loadCertificate();
-        $dados = openssl_x509_parse(
-                openssl_x509_read((string) $base->getCertificate()->certload->pubKey())
-        );
-        $date = new \DateTime('now');
-
-        $datenow = $date->format('U');
-        $date->setTimestamp($dados['validTo_time_t']);
-        $dateCert = $date->format('U');
-
-        if ($dateCert < $datenow) {
-            throw new \NFe\CertificateException('Certificado Expirou em: ' . $date->format('d/m/Y'));
+    private function validDate(Base $base)
+    {
+        $certificate = $base->getCertificate();
+        if ($certificate->isExpired()) {
+            throw new \NFe\CertificateException('Certificado Expirou em: ' . $certificate->getValidTo()->format('d/m/Y'));
         }
         return true;
     }
-
 }

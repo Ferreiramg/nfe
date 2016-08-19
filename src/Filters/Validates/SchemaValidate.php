@@ -12,11 +12,13 @@ use \DOMDocument;
  *
  * @author Luis Paulo
  */
-class SchemaValidate extends DecorateProcess {
+class SchemaValidate extends DecorateProcess
+{
 
     private $schemaPath;
 
-    public function proccess(Base $base) {
+    public function proccess(Base $base)
+    {
         $this->validate($base->xml);
         $this->createprocess->proccess($base);
     }
@@ -26,17 +28,18 @@ class SchemaValidate extends DecorateProcess {
      * @param string $pathfile
      * @return \NFe\Filters\SchemaValidate
      */
-    public function setSchemaPathFile($pathfile) {
+    public function setSchemaPathFile($pathfile)
+    {
         $this->schemaPath = $pathfile;
         return $this;
     }
 
-    private function validate(DOMDocument $xmldc) {
+    private function validate(DOMDocument $xmldc)
+    {
         libxml_clear_errors();
         if (!$xmldc->schemaValidate($this->schemaPath)) {
-            throw new SchemaXmlException(print_r(libxml_get_errors(), true));
+            throw SchemaXmlException::validateSchema();
         }
         return true;
     }
-
 }
