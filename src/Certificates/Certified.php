@@ -17,7 +17,7 @@ interface Certified
 
     public function getCleanPublicKey();
 
-    // public function certificate();
+    public function certificate();
 
     public function getCaInfo();
 

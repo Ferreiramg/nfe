@@ -14,7 +14,7 @@ class NFeRequestException extends \RuntimeException {
         if (empty($errnoc)) {
             return null;
         }
-        throw new NFeRequestException($errmsg, $errnoc);
+        throw new self($errmsg, $errnoc);
     }
 
 }

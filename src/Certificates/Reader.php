@@ -2,6 +2,8 @@
 
 namespace NFe\Certificates;
 
+use NFe\CertificateException;
+
 /**
  * Description of Reader
  *
@@ -88,6 +90,13 @@ class Reader
         return $this->validTo < $now;
     }
 
+    /**
+     * Encrypt a content
+     * @param string $content
+     * @param int $algorithm type encrypt: default OPENSSL_ALGO_SHA1
+     * @return string
+     * @throws Nfe\CertificateException
+     */
     public function sign($content, $algorithm = OPENSSL_ALGO_SHA1)
     {
         if (!$privateResource = openssl_pkey_get_private($this->privateKey)) {

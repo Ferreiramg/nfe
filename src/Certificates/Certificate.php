@@ -35,12 +35,12 @@ class Certificate implements Certified
     public function getPrivateKeyFile()
     {
 
-        return $this->objValue->localPath->getPathPrefix().'/prikey.pem';
+        return $this->objValue->localPath->getPathPrefix() . '/prikey.pem';
     }
 
     public function getPublicKeyFile()
     {
-         return $this->objValue->localPath->getPathPrefix().'/pubkey.pem';
+        return $this->objValue->localPath->getPathPrefix() . '/pubkey.pem';
     }
 
     public function getValidFrom()
@@ -64,5 +64,19 @@ class Certificate implements Certified
             '-----BEGIN CERTIFICATE-----' => '',
             '-----END CERTIFICATE-----' => '')
         ));
+    }
+
+    public function certificate()
+    {
+        return $this->objValue->privateKey . "\r\n" . $this->objValue->publicKey;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->certificate();
     }
 }

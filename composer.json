@@ -1,6 +1,6 @@
 {
     "name": "lpdeveloper/nfephp7",
-    "description": "Wrapper de comunicação com SEFAZ",
+    "description": "API de comunicação com SEFAZ",
     "type": "application",
     "license": "GPL-3.0+",
     "authors": [

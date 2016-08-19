@@ -25,13 +25,14 @@
     </filter>
     <logging>
         <log type="testdox-text" target="php://stdout" />
+        <!-- log type="coverage-text" target="php://stdout" /-->
         <!--log 
-            type="coverage-html" 
-            target="/var/www/html/nfcoverage" 
-            charset="UTF-8" 
-            yui="true" 
-            highlight="true"
-            lowUpperBound="35"
-            highUpperBound="70" /-->
+        type="coverage-html" 
+        target="/var/www/html/nfcoverage" 
+        charset="UTF-8" 
+        yui="true" 
+        highlight="true"
+        lowUpperBound="35"
+        highUpperBound="70" /-->
     </logging>
 </phpunit>
