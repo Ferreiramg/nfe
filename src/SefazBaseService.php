@@ -5,6 +5,7 @@ namespace NFe;
 /**
  * Description of NFeServiceBase
  *
+ * @codeCoverageIgnore
  * @author Luis
  */
 class SefazBaseService {

@@ -13,7 +13,7 @@ use \NFe\ProccessTemplate,
  */
 class SignNFeTest extends PHPUnit {
 
-    public function testChainProccess() {
+    public function testShouldRunChainProccess() {
 
         $f = file_get_contents(self::XML1_DEP);
         $objxml = new TemplateXMLElement($f);

@@ -2,3 +2,4 @@
 /PL_008i2/
 /composer.lock
 /vendor/
+/test/src/deps/

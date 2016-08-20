@@ -8,6 +8,7 @@ use League\Flysystem\Adapter\Local;
 /**
  * Description of Base
  *
+ * @codeCoverageIgnore
  * @author lpdev
  */
 class Base
@@ -44,7 +45,7 @@ class Base
         }
         $local = new Filesystem(new Local(LOCAL_CERT));
         $this->certificate = new Certificates\Certificate(
-            new Certificates\Reader($local, NAME_CERT, PASSW_CERT)
+            $local->read(NAME_CERT), PASSW_CERT
         );
 
         return $this;

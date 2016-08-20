@@ -1,41 +1,31 @@
 <?php
 
-/**
- * Description of CertificateTest
- *
- * @author Luis Paulo
- */
+namespace NFePHP\Common\Tests\Certificate;
+
+use NFe\Certificates\Certificate;
+use NFe\CertificateException;
+
 class CertificateTest extends \NFe\Tests\PHPUnit
 {
 
-    /**
-     * @test
-     */
-    public function testCertificateRead()
+    public function testShouldLoadPfxCertificate()
     {
-        $reader = new \NFe\Certificates\Reader($this->paths, 'certs.pfx', self::CERT1_PASS);
-        $cert = new \NFe\Certificates\Certificate($reader);
-        $assing = $cert->sign('My data to sign');
+        $certificate = new Certificate($this->_getFile('certs.pfx'), self::CERT1_PASS);
 
-        self::assertFileExists($cert->getPrivateKeyFile());
-        self::assertFileExists($cert->getPublicKeyFile());
-        self::assertStringEndsNotWith('-----END CERTIFICATE-----', $cert->getCleanPublicKey());
-        self::assertFalse($cert->isExpired());
-        self::assertEquals('company', $cert->getCompanyName());
-        self::assertInstanceOf(\DateTime::class, $cert->getValidFrom());
-        self::assertInstanceOf(\DateTime::class, $cert->getValidTo());
-        self::assertEquals(
-            1, openssl_verify('My data to sign', $assing, $reader->rawData['cert'], OPENSSL_ALGO_SHA1)
-        );
+        self::assertEquals('NFeOO', $certificate->getCompanyName());
+        self::assertInstanceOf(\DateTime::class, $certificate->getValidFrom());
+        self::assertInstanceOf(\DateTime::class, $certificate->getValidTo());
+        self::assertStringEndsNotWith("-----END CERTIFICATE-----", $certificate->getCleanPublicKey());
+        self::assertNotNull($certificate->certificate());
+        self::assertFalse($certificate->isExpired());
+
+        $dataSigned = $certificate->sign('nfe');
+        self::assertTrue($certificate->verify('nfe', $dataSigned));
     }
 
-    /**
-     * @test
-     * @expectedException NFe\CertificateException
-     */
-    public function testPasswWrog()
+    public function testShouldGetExceptionWhenLoadPfxCertificate()
     {
-        $reader = new \NFe\Certificates\Reader($this->paths, 'certs.pfx', null);
-        $cert = new \NFe\Certificates\Certificate($reader);
+        $this->setExpectedException(CertificateException::class);
+        new Certificate($this->_getFile('certs.pfx'), 'error');
     }
 }

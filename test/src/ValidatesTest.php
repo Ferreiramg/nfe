@@ -23,7 +23,7 @@ class ValidatesTest extends PHPUnit
         return new TemplateXMLElement($f);
     }
 
-    public function testValidateSchemasNfe()
+    public function testShouldValidateSchemasNfe()
     {
 
         $schema = new SchemaValidate(
@@ -40,7 +40,7 @@ class ValidatesTest extends PHPUnit
     /**
      * @expectedException NFe\SchemaXmlException
      */
-    public function testShemaValidateExceptionInvalidXml()
+    public function testShouldGetShemaValidateExceptionInvalidXml()
     {
         $template = $this->_renderTemplate();
         $template->infNFe->ide->cUF->remove(); //remove node cUF
@@ -56,7 +56,7 @@ class ValidatesTest extends PHPUnit
         $run->proccess(new Base());
     }
 
-    public function testValidateDateCertificate()
+    public function testShouldValidateDateCertificate()
     {
         $run = new \NFe\Filters\ValidateCertificate($this->_simpleMock(\NFe\ProccessInterface::class));
 
@@ -67,14 +67,15 @@ class ValidatesTest extends PHPUnit
      * @expectedException \NFe\CertificateException
      * @expectedExceptionMessage Certificado Expirou em: 30/06/2015
      */
-    public function testValidateDateCertificateExceptionOutOfDate()
+    public function testShouldGetCertificateExceptionOutOfDate()
     {
         $run = new \NFe\Filters\ValidateCertificate($this->_simpleMock(\NFe\ProccessInterface::class));
 
         $mock = $this->_mockBase2();
         $mock->method('getCertificate') //change certificate
-            ->will($this->returnValue(new Certificate(
-                    new Reader($this->paths, self::CERT2_TEST, self::CERT1_PASS))
+            ->will($this->returnValue(
+                    new Certificate($this->_getFile(self::CERT2_TEST), self::CERT1_PASS
+                    )
         ));
 
         $run->proccess($mock);

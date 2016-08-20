@@ -2,24 +2,96 @@
 
 namespace NFe\Certificates;
 
+use NFe\CertificateException;
+
 /**
- * Description of Certificate
+ * Description of Reader
  *
  * @author Luis Paulo
  */
-class Certificate implements Certified
+class Certificate implements SignatureInterface, VerificationInterface, Certified
 {
 
-    private $objValue;
+    /**
+     * @var string
+     */
+    public $privateKey;
 
-    public function __construct(Reader $reader)
+    /**
+     * @var string
+     */
+    public $publicKey;
+
+    public function __construct($content, $passw)
     {
-        $this->objValue = $reader;
+        $this->read($content, $passw);
     }
 
-    public function sign($text, $alg = OPENSSL_ALGO_SHA1)
+    private function read($content, $password)
     {
-        return $this->objValue->sign($text, $alg);
+        $certs = [];
+        if (!openssl_pkcs12_read($content, $certs, $password)) {
+            throw CertificateException::unableToRead();
+        }
+        $this->privateKey = new PrivateKey($certs['pkey']);
+        $this->publicKey = new PublicKey($certs['cert']);
+    }
+
+    /**
+     * Gets company name.
+     * @return string
+     */
+    public function getCompanyName()
+    {
+        return $this->publicKey->commonName;
+    }
+
+    /**
+     * Gets start date.
+     * @return \DateTime Returns start date.
+     */
+    public function getValidFrom()
+    {
+        return $this->publicKey->validFrom;
+    }
+
+    /**
+     * Gets end date.
+     * @return \DateTime Returns end date.
+     */
+    public function getValidTo()
+    {
+        return $this->publicKey->validTo;
+    }
+
+    /**
+     * Check if certificate has been expired.
+     * @return bool Returns true when it is truth, otherwise false.
+     */
+    public function isExpired()
+    {
+        return $this->publicKey->isExpired();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function sign($content, $algorithm = OPENSSL_ALGO_SHA1)
+    {
+        return $this->privateKey->sign($content, $algorithm);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function verify($data, $signature, $algorithm = OPENSSL_ALGO_SHA1)
+    {
+        return $this->publicKey->verify($data, $signature, $algorithm);
+    }
+
+    public function certificate()
+    {
+        return $this->privateKey . "\r\n" . $this->publicKey;
     }
 
     public function getCaInfo()
@@ -27,56 +99,21 @@ class Certificate implements Certified
         
     }
 
-    public function getCompanyName()
-    {
-        return $this->objValue->companyName;
-    }
-
-    public function getPrivateKeyFile()
-    {
-
-        return $this->objValue->localPath->getPathPrefix() . '/prikey.pem';
-    }
-
-    public function getPublicKeyFile()
-    {
-        return $this->objValue->localPath->getPathPrefix() . '/pubkey.pem';
-    }
-
-    public function getValidFrom()
-    {
-        return $this->objValue->validFrom;
-    }
-
-    public function getValidTo()
-    {
-        return $this->objValue->validTo;
-    }
-
-    public function isExpired()
-    {
-        return $this->objValue->isExpired();
-    }
-
     public function getCleanPublicKey()
     {
-        return preg_replace('/\s+/', '', strtr($this->objValue->publicKey, array(
+        return preg_replace('/\s+/', '', strtr($this->publicKey, array(
             '-----BEGIN CERTIFICATE-----' => '',
             '-----END CERTIFICATE-----' => '')
         ));
     }
 
-    public function certificate()
+    public function getPrivateKey()
     {
-        return $this->objValue->privateKey . "\r\n" . $this->objValue->publicKey;
+        
     }
 
-    /**
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function __toString()
+    public function getPublicKey()
     {
-        return $this->certificate();
+        
     }
 }
