@@ -55,4 +55,10 @@ class Base
     {
         return $this->certificate;
     }
+    
+    public function preparTempCert(){
+        $this->loadCertificate();
+        $local->write('cert.pem', $this->certificate->certificate());
+        return $local->getAdapter(). '/cert.pem';
+    }
 }

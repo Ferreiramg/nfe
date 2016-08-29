@@ -7,9 +7,11 @@ namespace NFe;
  * @codeCoverageIgnore
  * @author Luis
  */
-class NFeException extends \RuntimeException {
+class NFeException extends \RuntimeException
+{
 
-    public static function errorHandler($errnoc, $errmsg) {
+    public static function errorHandler($errnoc, $errmsg)
+    {
 
         if (empty($errnoc)) {
             return null;
@@ -17,4 +19,8 @@ class NFeException extends \RuntimeException {
         throw new self($errmsg, $errnoc);
     }
 
+    public static function servicePrepareError($msg="")
+    {
+        return new static('Get follow error: '.$msg);
+    }
 }

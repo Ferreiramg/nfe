@@ -8,7 +8,8 @@ namespace NFe;
  * @codeCoverageIgnore
  * @author Luis
  */
-class SefazBaseService {
+class SefazBaseService
+{
 
     const URL = 'http://www.portalfiscal.inf.br/nfe';
     const TYPE_HOMOLOGACAO = 2;
@@ -16,9 +17,9 @@ class SefazBaseService {
     const VERSION_NFE = '3.10';
     const URL_SERVICE_FILE = URL_SERVICE_FILE;
 
-    public $uf;
+    private $uf;
     public $type;
-    public $code;
+    public $cUF;
     private static $usageservices = array(
         'recepcao' => 'RecepcaoEvento',
         'inutilizar' => 'NfeInutilizacao',
@@ -51,34 +52,39 @@ class SefazBaseService {
         '210240' => 'Operacao nao Realizada'
     );
 
-    public function __construct($uf, $type = self::TYPE_HOMOLOGACAO) {
-        $this->code = (int) $this->getUfCode($uf); //validate
+    public function __construct($uf, $type = self::TYPE_HOMOLOGACAO)
+    {
+        $this->cUF = (int) $this->getUfCode($uf); //validate
         $this->uf = (string) strtoupper($uf);
         $this->type = (int) $type;
     }
 
-    public static function getServiceByName($nameservice) {
+    public static function getServiceByName($nameservice)
+    {
         if (isset(self::$usageservices[$nameservice])) {
             return self::$usageservices[$nameservice];
         }
         throw new \InvalidArgumentException(sprintf("Serviço %s não é valido!", $nameservice));
     }
 
-    public static function getUfCode($uf) {
+    public static function getUfCode($uf)
+    {
         if (isset(self::$codeUF[strtoupper($uf)])) {
             return self::$codeUF[strtoupper($uf)];
         }
         throw new \InvalidArgumentException(sprintf("Estado %s não existe!", $uf));
     }
 
-    public static function getEvent($evento) {
+    public static function getEvent($evento)
+    {
         if (isset(self::$evento[$evento])) {
             return [$evento, self::$evento[$evento]];
         }
         throw new \InvalidArgumentException(sprintf("Evento %s não encontrado!", $evento));
     }
 
-    public function getServicetURL($servicename) {
+    public function getServiceWsdl($servicename)
+    {
         $loadconfig = $this->loadXmlConfig();
         $service = self::getServiceByName($servicename);
         return sprintf('%s/wsdl/%s', self::URL, $loadconfig->{$service}->attributes()->operation);
@@ -88,15 +94,16 @@ class SefazBaseService {
      * 
      * @return SimpleXMLElement 
      */
-    public function loadXmlConfig() {
-        $xml = new \SimpleXMLElement(self::URL_SERVICE_FILE,0,true);
+    public function serviceConfig()
+    {
+        $xml = new \SimpleXMLElement(self::URL_SERVICE_FILE, 0, true);
         return $xml->xpath(sprintf(
-                                '/WS/UF[sigla="%s"]/%s', $this->uf, $this->getAmbiente()
-                ))[0];
+                    '/WS/UF[sigla="%s"]/%s', $this->uf, $this->getAmbiente()
+            ))[0];
     }
 
-    private function getAmbiente() {
+    private function getAmbiente()
+    {
         return $this->type === 1 ? 'producao' : 'homologacao';
     }
-
 }

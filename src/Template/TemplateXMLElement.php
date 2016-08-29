@@ -3,7 +3,7 @@
 namespace NFe\Template;
 
 /**
- * Description of TemplateeXMl
+ * Description of TemplateXMl
  *
  * @author Luis Paulo
  */
